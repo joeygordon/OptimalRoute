@@ -28,7 +28,7 @@ import NavContainer from './Components/NavContainer';
 const App: () => React$Node = () => {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
+      <StatusBar barStyle="light-content" />
       <NavContainer />
       {/*<SafeAreaView>*/}
       {/*  <ScrollView*/}

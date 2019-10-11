@@ -5,21 +5,31 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import Create from './Create';
 import Today from './Today';
 import Unscheduled from './Unscheduled';
+import {stackNavConfig} from '../consts/config';
 
-const TodayStack = createStackNavigator({
-  Today: Today,
-});
+const TodayStack = createStackNavigator(
+  {
+    Today: Today,
+  },
+  stackNavConfig,
+);
 
-const CreateStack = createStackNavigator({
-  New: Create,
-});
+const CreateStack = createStackNavigator(
+  {
+    New: Create,
+  },
+  stackNavConfig,
+);
 
-const UnscheduledStack = createStackNavigator({
-  Unscheduled: Unscheduled,
-});
+const UnscheduledStack = createStackNavigator(
+  {
+    Unscheduled: Unscheduled,
+  },
+  stackNavConfig,
+);
 
 const TabNavigator = createBottomTabNavigator({
-  Today: TodayStack,
+  Schedule: TodayStack,
   New: CreateStack,
   Unscheduled: UnscheduledStack,
 });
