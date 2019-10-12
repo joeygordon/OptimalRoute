@@ -1,10 +1,18 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
 
-const CreateButton = () => (
-  <Button buttonStyle={styles.button} title="Create Route" onPress={() => {}} />
-);
+const CreateButton = ({listCount}) => {
+  const buttonTitle =
+    listCount < 2 ? 'Select at least 2 Jobs' : `Map ${listCount} Stops`;
+  return (
+    <Button
+      buttonStyle={styles.button}
+      title={buttonTitle}
+      onPress={() => {}}
+    />
+  );
+};
 
 const styles = StyleSheet.create({
   button: {

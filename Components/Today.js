@@ -2,21 +2,27 @@ import React from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, View} from 'react-native';
 import JobItem from './JobItem';
 import Calendar from './Calendar';
+import {jobs} from '../__mocks__/jobs';
 
-const Today = () => (
-  <SafeAreaView>
-    <ScrollView style={todayStyles.scrollView}>
-      <View>
-        <Calendar />
-        <JobItem />
-        <JobItem />
-        <JobItem />
-        <JobItem />
-        <JobItem />
-      </View>
-    </ScrollView>
-  </SafeAreaView>
-);
+const Today = () => {
+  const jobsList = jobs.map(job => {
+    console.log('soifhjew', job);
+    return (
+      <JobItem key={job.id} handleSelection={()=>{}} jobInfo={job} />
+    );
+  });
+
+  return (
+    <SafeAreaView>
+      <ScrollView style={todayStyles.scrollView}>
+        <View>
+          <Calendar />
+          {jobsList}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
 
 Today.navigationOptions = {
   title: 'Schedule',
