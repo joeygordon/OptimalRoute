@@ -4,6 +4,7 @@ import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 import JobItem from './JobItem';
 import CreateButton from './CreateButton';
 
+// mocked jobs with addresses
 import {jobs} from '../__mocks__/jobs';
 
 const Create = ({navigation}) => {
@@ -16,31 +17,35 @@ const Create = ({navigation}) => {
     });
   };
 
-  const _handleItemPress = job => {
+  const handleJobSelection = job => {
+    // if the selected job is already in the selectedJobs list, remove it
+    // if it's not there, add it to the list
     if (findJobInArray(job.id)) {
-      // remove job from array
-      const newSelectedJobArray = selectedJobs.filter(item => {
+      const selectedJobsWithoutCurrent = selectedJobs.filter(item => {
         return item.id !== job.id;
       });
-      setSelectedJobs(newSelectedJobArray);
+      setSelectedJobs(selectedJobsWithoutCurrent);
     } else {
-      const newSelectedJobArray = selectedJobs.concat(job);
-      setSelectedJobs(newSelectedJobArray);
+      setSelectedJobs(selectedJobs.concat(job));
     }
   };
 
+  // Each job card
   const jobsList = jobs.map(job => {
+    // is the card currently selected?
     const isSelected = !!findJobInArray(job.id);
+
     return (
       <JobItem
         key={job.id}
-        handleSelection={_handleItemPress}
+        handleSelection={handleJobSelection}
         jobInfo={job}
         selected={isSelected}
       />
     );
   });
 
+  // navigate to new route with job data on CreateButton press
   const handleCreatePress = () => {
     navigation.navigate('BuildRoute', {jobsList: selectedJobs});
   };
@@ -48,8 +53,8 @@ const Create = ({navigation}) => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView>
-        <View style={styles.scrollView}>
-          <View style={styles.introView}>
+        <View style={styles.container}>
+          <View style={styles.header}>
             <Text style={styles.heading}>Create A Route</Text>
             <Text style={styles.subHeading}>
               Select at least 2 locations to calculate the most efficient route.
@@ -69,13 +74,12 @@ Create.navigationOptions = {
 
 const styles = StyleSheet.create({
   safeArea: {
-    height: '100%',
     backgroundColor: '#eeeeee',
   },
-  scrollView: {
+  container: {
     paddingBottom: 104,
   },
-  introView: {
+  header: {
     margin: 16,
     marginTop: 32,
   },
