@@ -3,6 +3,8 @@ import {StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 
+import {colors} from '../consts/colors';
+
 const CreateButton = ({listCount, handlePress}) => {
   const buttonTitle =
     listCount < 2 ? 'Select At Least 2 Jobs' : `Route ${listCount} Jobs`;
@@ -33,7 +35,7 @@ const styles = StyleSheet.create({
     zIndex: 2,
   },
   button: {
-    backgroundColor: 'rebeccapurple',
+    backgroundColor: colors.primary,
     borderRadius: 8,
     height: 56,
     marginLeft: 32,

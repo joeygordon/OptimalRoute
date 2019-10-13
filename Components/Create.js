@@ -7,6 +7,7 @@ import CreateButton from './CreateButton';
 // mocked jobs with addresses
 import {jobs} from '../__mocks__/jobs';
 import {findJobInArray} from '../utils/findJobInArray';
+import {colors} from '../consts/colors';
 
 const Create = ({navigation}) => {
   const [selectedJobs, setSelectedJobs] = useState([]);
@@ -80,7 +81,7 @@ Create.navigationOptions = {
 
 const styles = StyleSheet.create({
   safeArea: {
-    backgroundColor: '#eeeeee',
+    backgroundColor: colors.background,
   },
   container: {
     paddingBottom: 104,
@@ -92,12 +93,12 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 24,
     fontWeight: '600',
-    color: '#666666',
+    color: colors.text,
     marginBottom: 8,
   },
   subHeading: {
     fontSize: 16,
-    color: '#666666',
+    color: colors.text,
     marginBottom: 8,
   },
 });

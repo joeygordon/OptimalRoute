@@ -1,6 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
+import {colors} from '../consts/colors';
+
 const JobItem = ({jobInfo, handleSelection, selected}) => {
   const selectedStyle = selected ? styles.selectedCard : null;
 
@@ -21,10 +23,10 @@ const styles = StyleSheet.create({
     marginRight: 16,
     padding: 16,
     borderRadius: 4,
-    backgroundColor: 'white',
+    backgroundColor: colors.cardBackground,
   },
   selectedCard: {
-    backgroundColor: '#7cb342',
+    backgroundColor: colors.secondary,
   },
   text: {
     fontSize: 16,

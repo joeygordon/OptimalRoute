@@ -3,6 +3,8 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {showLocation} from 'react-native-map-link';
 
 import {findJobInArray} from '../utils/findJobInArray';
+import {colors} from '../consts/colors';
+import {color} from 'react-native-reanimated';
 
 const Route = ({routeObject, jobsList}) => {
   const {route} = routeObject;
@@ -70,7 +72,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: 'white',
+    backgroundColor: colors.cardBackground,
     borderRadius: 4,
     margin: 8,
     marginLeft: 16,
@@ -81,7 +83,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   mapLink: {
-    color: '#999',
+    color: colors.lightText,
     textTransform: 'uppercase',
     fontSize: 16,
     marginRight: 8,
@@ -90,7 +92,7 @@ const styles = StyleSheet.create({
     width: 3,
     height: 64,
     marginLeft: 80,
-    backgroundColor: 'rebeccapurple',
+    backgroundColor: colors.primary,
   },
 });
 

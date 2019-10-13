@@ -9,10 +9,11 @@ import {
 } from 'react-native';
 
 import Route from './Route';
+import {Button} from 'react-native-elements';
 
 // mocking 'current location' for time/complexity reasons
 import {homeAddress} from '../__mocks__/jobs';
-import {Button} from 'react-native-elements';
+import {colors} from '../consts/colors';
 
 const BuildRoute = ({navigation}) => {
   const [loading, setLoading] = useState(true);
@@ -146,7 +147,7 @@ BuildRoute.navigationOptions = {
 const styles = StyleSheet.create({
   safeArea: {
     height: '100%',
-    backgroundColor: '#eeeeee',
+    backgroundColor: colors.background,
   },
   activity: {
     justifyContent: 'center',
@@ -159,16 +160,16 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 24,
     fontWeight: '600',
-    color: '#666666',
+    color: colors.text,
     marginBottom: 8,
   },
   subHeading: {
     fontSize: 16,
-    color: '#666666',
+    color: colors.text,
     marginBottom: 8,
   },
   button: {
-    backgroundColor: 'rebeccapurple',
+    backgroundColor: colors.primary,
     borderRadius: 8,
     height: 56,
     width: '100%',
