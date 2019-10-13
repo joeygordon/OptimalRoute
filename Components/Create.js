@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 
 import JobItem from './JobItem';
@@ -10,6 +10,17 @@ import {jobs} from '../__mocks__/jobs';
 const Create = ({navigation}) => {
   const [selectedJobs, setSelectedJobs] = useState([]);
   const selectedCount = selectedJobs.length;
+
+  useEffect(() => {
+    // reset selected jobs when returning to this view
+    const focusListener = navigation.addListener('willFocus', () => {
+      setSelectedJobs([]);
+    });
+
+    return () => {
+      focusListener.remove();
+    };
+  }, [navigation]);
 
   const findJobInArray = id => {
     return selectedJobs.find(job => {
