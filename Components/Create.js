@@ -6,6 +6,7 @@ import CreateButton from './CreateButton';
 
 // mocked jobs with addresses
 import {jobs} from '../__mocks__/jobs';
+import {findJobInArray} from '../utils/findJobInArray';
 
 const Create = ({navigation}) => {
   const [selectedJobs, setSelectedJobs] = useState([]);
@@ -22,16 +23,10 @@ const Create = ({navigation}) => {
     };
   }, [navigation]);
 
-  const findJobInArray = id => {
-    return selectedJobs.find(job => {
-      return job.id === id;
-    });
-  };
-
   const handleJobSelection = job => {
     // if the selected job is already in the selectedJobs list, remove it
     // if it's not there, add it to the list
-    if (findJobInArray(job.id)) {
+    if (findJobInArray(job.id, selectedJobs)) {
       const selectedJobsWithoutCurrent = selectedJobs.filter(item => {
         return item.id !== job.id;
       });
@@ -44,7 +39,7 @@ const Create = ({navigation}) => {
   // Each job card
   const jobsList = jobs.map(job => {
     // is the card currently selected?
-    const isSelected = !!findJobInArray(job.id);
+    const isSelected = !!findJobInArray(job.id, selectedJobs);
 
     return (
       <JobItem

@@ -128,8 +128,9 @@ const BuildRoute = ({navigation}) => {
       <ScrollView>
         <View style={styles.header}>
           <Text style={styles.heading}>Your Route</Text>
+          <Text style={styles.subHeading}>{jobsList.length} total stops</Text>
           <Text style={styles.subHeading}>
-            {jobsList.length} stops - some times
+            Tap a stop to get directions from the previous stop
           </Text>
         </View>
         <Route routeObject={route} jobsList={jobsInRoute} />

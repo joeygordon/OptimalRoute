@@ -1,55 +1,50 @@
 import React from 'react';
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {showLocation} from 'react-native-map-link';
+
+import {findJobInArray} from '../utils/findJobInArray';
 
 const Route = ({routeObject, jobsList}) => {
   const {route} = routeObject;
 
-  // TODO make this a util
-  const findJobInArray = id => {
-    return jobsList.find(job => {
-      return job.id === parseInt(id);
-    });
-  };
-
+  // extract the stops from the poorly structured api response
   const routeStops = Object.entries(route).map(stop => {
     return stop[1];
   });
 
+  // builds links to map directions between stops
   const linkToMap = (start, end) => {
     showLocation({
       latitude: end.lat,
       longitude: end.long,
-      sourceLatitude: start.lat, // optionally specify starting location for directions
-      sourceLongitude: start.long, // not optional if sourceLatitude is specified
-      googleForceLatLon: true, // optionally force GoogleMaps to use the latlon for the query instead of the title
-    });
+      sourceLatitude: start.lat,
+      sourceLongitude: start.long,
+      googleForceLatLon: true,
+    }).then(() => {});
   };
 
+  // build out view for each stop on the route
   const routeViews = routeStops.map((stop, i) => {
-    const stopData = findJobInArray(stop.name);
+    // get data for the current stop
+    const stopData = findJobInArray(stop.name, jobsList);
+
+    // get data for the previous stop to use for directions
     const previousStop = routeStops[i - 1];
     const previousStopData = previousStop
-      ? findJobInArray(previousStop.name)
+      ? findJobInArray(previousStop.name, jobsList)
       : {};
-    const distanceView =
-      stop.distance !== 0 ? <View style={styles.dividerLine} /> : null;
+
+    const dividerLine = i !== 0 ? <View style={styles.dividerLine} /> : null;
 
     return (
       <View key={`${stop.name}-${i}`}>
-        {distanceView}
+        {dividerLine}
         <TouchableOpacity
           disabled={i === 0}
           onPress={() => linkToMap(previousStopData, stopData)}
           style={styles.cardWrapper}>
           <View style={styles.card}>
-            <View style={styles.cardInfo}>
+            <View>
               <Text style={styles.detailText}>{stopData.name}</Text>
               <Text>{stopData.address}</Text>
             </View>
@@ -96,10 +91,6 @@ const styles = StyleSheet.create({
     height: 64,
     marginLeft: 80,
     backgroundColor: 'rebeccapurple',
-  },
-  distanceText: {
-    width: 'auto',
-    paddingLeft: 76,
   },
 });
 
