@@ -49,8 +49,11 @@ const Route = ({routeObject, jobsList}) => {
           onPress={() => linkToMap(previousStopData, stopData)}
           style={styles.cardWrapper}>
           <View style={styles.card}>
-            <Text style={styles.detailText}>{stopData.name}</Text>
-            <Text>{stopData.address}</Text>
+            <View style={styles.cardInfo}>
+              <Text style={styles.detailText}>{stopData.name}</Text>
+              <Text>{stopData.address}</Text>
+            </View>
+            {i !== 0 && <Text style={styles.mapLink}>Map</Text>}
           </View>
         </TouchableOpacity>
       </View>
@@ -69,6 +72,9 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   card: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     backgroundColor: 'white',
     borderRadius: 4,
     margin: 8,
@@ -78,6 +84,12 @@ const styles = StyleSheet.create({
   },
   detailText: {
     fontSize: 24,
+  },
+  mapLink: {
+    color: '#999',
+    textTransform: 'uppercase',
+    fontSize: 16,
+    marginRight: 8,
   },
   dividerLine: {
     width: 3,
