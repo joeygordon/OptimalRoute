@@ -7,7 +7,7 @@ import {stackNavConfig} from '../consts/config';
 
 const CreateStack = createStackNavigator(
   {
-    New: Create,
+    Home: Create,
     BuildRoute: BuildRoute,
   },
   stackNavConfig,
