@@ -6,7 +6,6 @@ import {jobs} from '../__mocks__/jobs';
 
 const Today = () => {
   const jobsList = jobs.map(job => {
-    console.log('soifhjew', job);
     return (
       <JobItem key={job.id} handleSelection={()=>{}} jobInfo={job} />
     );

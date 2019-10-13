@@ -1,28 +1,34 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {Button} from 'react-native-elements';
 
-const CreateButton = ({listCount}) => {
+const CreateButton = ({listCount, handlePress}) => {
   const buttonTitle =
-    listCount < 2 ? 'Select at least 2 Jobs' : `Map ${listCount} Stops`;
+    listCount < 2 ? 'Select At Least 2 Jobs' : `Map ${listCount} Stops`;
+
   return (
-    <Button
-      buttonStyle={styles.button}
-      title={buttonTitle}
-      onPress={() => {}}
-    />
+    <View style={styles.view}>
+      <Button
+        buttonStyle={styles.button}
+        title={buttonTitle}
+        onPress={handlePress}
+        disabled={listCount < 2}
+      />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  button: {
-    backgroundColor: 'rebeccapurple',
-    borderRadius: 8,
+  view: {
     position: 'absolute',
     left: 32,
     right: 32,
     bottom: 32,
-    alignItems: 'center',
+    zIndex: 2,
+  },
+  button: {
+    backgroundColor: 'rebeccapurple',
+    borderRadius: 8,
   },
 });
 

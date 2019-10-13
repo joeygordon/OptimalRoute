@@ -6,9 +6,15 @@ import CreateButton from './CreateButton';
 
 import {jobs} from '../__mocks__/jobs';
 
-const Create = () => {
+const Create = ({navigation}) => {
   const [selectedJobs, setSelectedJobs] = useState([]);
   const selectedCount = selectedJobs.length;
+
+  const findJobInArray = id => {
+    return selectedJobs.find(job => {
+      return job.id === id;
+    });
+  };
 
   const _handleItemPress = job => {
     if (findJobInArray(job.id)) {
@@ -23,12 +29,6 @@ const Create = () => {
     }
   };
 
-  const findJobInArray = id => {
-    return selectedJobs.find(job => {
-      return job.id === id;
-    });
-  };
-
   const jobsList = jobs.map(job => {
     const isSelected = !!findJobInArray(job.id);
     return (
@@ -41,6 +41,10 @@ const Create = () => {
     );
   });
 
+  const handleCreatePress = () => {
+    navigation.navigate('BuildRoute', {jobsList: selectedJobs});
+  };
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView>
@@ -49,7 +53,7 @@ const Create = () => {
         </View>
         {jobsList}
       </ScrollView>
-      <CreateButton listCount={selectedCount} />
+      <CreateButton listCount={selectedCount} handlePress={handleCreatePress} />
     </SafeAreaView>
   );
 };
