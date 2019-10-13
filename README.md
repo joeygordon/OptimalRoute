@@ -11,7 +11,7 @@ Find the most optimal travel route form your chosen destinations.
 
 ## Running The App
 * *iOS Simulator* - `yarn ios` to run on iPhone 11 simulator
-* *Android Simulator* - `react-native run-android`
+* *Android Simulator* - `yarn android`
 
 ## Technology Decisions
 - Everything was built in React Native.
