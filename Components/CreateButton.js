@@ -1,14 +1,17 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {Button} from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 
 const CreateButton = ({listCount, handlePress}) => {
   const buttonTitle =
-    listCount < 2 ? 'Select At Least 2 Jobs' : `Map ${listCount} Stops`;
+    listCount < 2 ? 'Select At Least 2 Jobs' : `Route ${listCount} Jobs`;
 
   return (
-    <LinearGradient colors={['#eeeeee00', '#eeeeee', '#eeeeee']} locations={[0, 0.5, 1]} style={styles.view}>
+    <LinearGradient
+      colors={['#eeeeee00', '#eeeeee', '#eeeeee']}
+      locations={[0, 0.5, 1]}
+      style={styles.view}>
       <Button
         buttonStyle={styles.button}
         title={buttonTitle}
