@@ -25,9 +25,11 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   selectedCard: {
-    backgroundColor: 'green',
+    backgroundColor: '#7cb342',
     borderRadius: 4,
     margin: 8,
+    marginLeft: 16,
+    marginRight: 16,
     padding: 16,
   },
   nameText: {

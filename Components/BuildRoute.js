@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
+import {
+  ActivityIndicator,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import Route from './Route';
 import {homeAddress} from '../__mocks__/jobs';
 
@@ -72,13 +79,45 @@ const BuildRoute = ({navigation}) => {
     );
   }
 
-  return <Route routeObject={route} jobsList={jobsInRoute} />;
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      <ScrollView>
+        <View style={styles.introView}>
+          <Text style={styles.heading}>Your Route</Text>
+          <Text style={styles.subHeading}>
+            {jobsList.length} stops - some times
+          </Text>
+        </View>
+        <Route routeObject={route} jobsList={jobsInRoute} />
+      </ScrollView>
+    </SafeAreaView>
+  );
 };
 
 BuildRoute.navigationOptions = {
   title: 'Your Route',
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  safeArea: {
+    height: '100%',
+    backgroundColor: '#eeeeee',
+  },
+  introView: {
+    margin: 16,
+    marginTop: 32,
+  },
+  heading: {
+    fontSize: 24,
+    fontWeight: '600',
+    color: '#666666',
+    marginBottom: 8,
+  },
+  subHeading: {
+    fontSize: 16,
+    color: '#666666',
+    marginBottom: 8,
+  },
+});
 
 export default BuildRoute;

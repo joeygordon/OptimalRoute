@@ -1,5 +1,12 @@
 import React from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {showLocation} from 'react-native-map-link';
 
 const Route = ({routeObject, jobsList}) => {
   const {route} = routeObject;
@@ -15,34 +22,42 @@ const Route = ({routeObject, jobsList}) => {
     return stop[1];
   });
 
+  const linkToMap = (start, end) => {
+    showLocation({
+      latitude: end.lat,
+      longitude: end.long,
+      sourceLatitude: start.lat, // optionally specify starting location for directions
+      sourceLongitude: start.long, // not optional if sourceLatitude is specified
+      googleForceLatLon: true, // optionally force GoogleMaps to use the latlon for the query instead of the title
+    });
+  };
+
   const routeViews = routeStops.map((stop, i) => {
     const stopData = findJobInArray(stop.name);
+    const previousStop = routeStops[i - 1];
+    const previousStopData = previousStop
+      ? findJobInArray(previousStop.name)
+      : {};
     const distanceView =
-      stop.distance !== 0 ? (
-        <>
-          <View style={styles.dividerLine} />
-          <Text>{stop.arrival}</Text>
-          <View style={styles.dividerLine} />
-        </>
-      ) : null;
+      stop.distance !== 0 ? <View style={styles.dividerLine} /> : null;
 
     return (
       <View key={`${stop.name}-${i}`}>
-        <View style={styles.detailView}>
-          {distanceView}
-          <Text style={styles.detailText}>{stopData.name}</Text>
-          <Text>{stopData.address}</Text>
-        </View>
-        <View />
+        {distanceView}
+        <TouchableOpacity
+          disabled={i === 0}
+          onPress={() => linkToMap(previousStopData, stopData)}
+          style={styles.cardWrapper}>
+          <View style={styles.card}>
+            <Text style={styles.detailText}>{stopData.name}</Text>
+            <Text>{stopData.address}</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     );
   });
 
-  return (
-    <ScrollView>
-      <View style={styles.containerView}>{routeViews}</View>
-    </ScrollView>
-  );
+  return <>{routeViews}</>;
 };
 
 const styles = StyleSheet.create({
@@ -50,16 +65,29 @@ const styles = StyleSheet.create({
     paddingTop: 32,
     paddingBottom: 64,
   },
-  detailView: {
-    alignItems: 'center',
+  cardWrapper: {
+    width: '100%',
+  },
+  card: {
+    backgroundColor: 'white',
+    borderRadius: 4,
+    margin: 8,
+    marginLeft: 16,
+    marginRight: 16,
+    padding: 16,
   },
   detailText: {
     fontSize: 24,
   },
   dividerLine: {
     width: 3,
-    height: 32,
+    height: 64,
+    marginLeft: 80,
     backgroundColor: 'rebeccapurple',
+  },
+  distanceText: {
+    width: 'auto',
+    paddingLeft: 76,
   },
 });
 

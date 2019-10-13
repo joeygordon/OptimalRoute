@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 
 import JobItem from './JobItem';
@@ -50,7 +50,10 @@ const Create = ({navigation}) => {
       <ScrollView>
         <View style={styles.scrollView}>
           <View style={styles.introView}>
-            <Text style={styles.introText}>Select Stops</Text>
+            <Text style={styles.heading}>Create A Route</Text>
+            <Text style={styles.subHeading}>
+              Select at least 2 locations to calculate the most efficient route.
+            </Text>
           </View>
           {jobsList}
         </View>
@@ -76,10 +79,16 @@ const styles = StyleSheet.create({
     margin: 16,
     marginTop: 32,
   },
-  introText: {
+  heading: {
     fontSize: 24,
     fontWeight: '600',
     color: '#666666',
+    marginBottom: 8,
+  },
+  subHeading: {
+    fontSize: 16,
+    color: '#666666',
+    marginBottom: 8,
   },
 });
 
