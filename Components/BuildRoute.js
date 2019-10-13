@@ -12,12 +12,13 @@ import Route from './Route';
 
 // mocking 'current location' for time/complexity reasons
 import {homeAddress} from '../__mocks__/jobs';
+import {Button} from 'react-native-elements';
 
 const BuildRoute = ({navigation}) => {
   const [loading, setLoading] = useState(true);
   const [route, setRoute] = useState([]);
   const [jobsInRoute, setJobsInRoute] = useState([]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(false);
 
   // passing the jobsList array as a param into this component
   // instead of using some sort of global state management
@@ -44,14 +45,11 @@ const BuildRoute = ({navigation}) => {
   // you wouldn't normally have to do this if the API work properly
   // with normal JSON requests like virtually every other API on earth.
   const encodeBodyForAPI = data => {
-    const formBody = [];
-
-    for (const property in data) {
+    const formBody = Object.keys(data).map(property => {
       const encodedKey = encodeURIComponent(property);
       const encodedValue = encodeURIComponent(data[property]);
-      formBody.push(encodedKey + '=' + encodedValue);
-    }
-
+      return `${encodedKey}=${encodedValue}`;
+    });
     return formBody.join('&');
   };
 
@@ -89,19 +87,17 @@ const BuildRoute = ({navigation}) => {
 
     fetchRoute()
       .then(response => {
-        // everything went well.
-        // kill the loader, show the route
+        // everything went well, kill the loader, show the route
         setLoading(false);
       })
-      .catch(err => {
-        // there was an error
-        // show the error screen
-        setError(err);
+      .catch(() => {
+        // there was an error, show the error screen
+        setError(true);
         setLoading(false);
       });
   }, [jobsList]);
 
-  // loading screen
+  // loading view
   if (loading) {
     return (
       <SafeAreaView style={[styles.safeArea, styles.activity]}>
@@ -110,6 +106,23 @@ const BuildRoute = ({navigation}) => {
     );
   }
 
+  // error fetching data view
+  if (error) {
+    return (
+      <SafeAreaView style={[styles.safeArea, styles.activity]}>
+        <Text style={styles.subHeading}>
+          There was an error calculating your route.
+        </Text>
+        <Button
+          onPress={() => navigation.popToTop()}
+          title="Go Back"
+          buttonStyle={styles.button}
+        />
+      </SafeAreaView>
+    );
+  }
+
+  // success view
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView>
@@ -127,7 +140,6 @@ const BuildRoute = ({navigation}) => {
 
 BuildRoute.navigationOptions = {
   headerTitle: 'Your Route',
-  // headerLeft: <></>,
 };
 
 const styles = StyleSheet.create({
@@ -136,7 +148,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#eeeeee',
   },
   activity: {
-    flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -154,6 +165,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#666666',
     marginBottom: 8,
+  },
+  button: {
+    backgroundColor: 'rebeccapurple',
+    borderRadius: 8,
+    height: 56,
+    width: '100%',
   },
 });
 
