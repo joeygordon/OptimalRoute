@@ -1,15 +1,14 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {Card} from 'react-native-elements';
 
 const JobItem = ({jobInfo, handleSelection, selected}) => {
-  const _handlePress = () => handleSelection(jobInfo);
-  const cardStyle = selected ? styles.selectedCard : styles.card;
+  const selectedStyle = selected ? styles.selectedCard : null;
+
   return (
-    <TouchableOpacity onPress={_handlePress}>
-      <View style={cardStyle}>
-        <Text style={styles.nameText}>{jobInfo.name}</Text>
-        <Text style={styles.addressText}>{jobInfo.address}e</Text>
+    <TouchableOpacity onPress={() => handleSelection(jobInfo)}>
+      <View style={[styles.card, selectedStyle]}>
+        <Text style={[styles.text, styles.nameText]}>{jobInfo.name}</Text>
+        <Text style={styles.text}>{jobInfo.address}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -17,27 +16,21 @@ const JobItem = ({jobInfo, handleSelection, selected}) => {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: 'white',
-    borderRadius: 4,
     margin: 8,
     marginLeft: 16,
     marginRight: 16,
     padding: 16,
+    borderRadius: 4,
+    backgroundColor: 'white',
   },
   selectedCard: {
     backgroundColor: '#7cb342',
-    borderRadius: 4,
-    margin: 8,
-    marginLeft: 16,
-    marginRight: 16,
-    padding: 16,
+  },
+  text: {
+    fontSize: 16,
   },
   nameText: {
-    fontSize: 16,
     fontWeight: 'bold',
-  },
-  addressText: {
-    fontSize: 16,
   },
 });
 
