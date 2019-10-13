@@ -27,7 +27,7 @@ import NavContainer from './Components/NavContainer';
 
 const App: () => React$Node = () => {
   return (
-    <>
+    <View style={styles.body}>
       <StatusBar barStyle="light-content" />
       <NavContainer />
       {/*<SafeAreaView>*/}
@@ -69,7 +69,7 @@ const App: () => React$Node = () => {
       {/*    </View>*/}
       {/*  </ScrollView>*/}
       {/*</SafeAreaView>*/}
-    </>
+    </View>
   );
 };
 
@@ -82,7 +82,8 @@ const styles = StyleSheet.create({
     right: 0,
   },
   body: {
-    backgroundColor: Colors.white,
+    backgroundColor: 'blue',
+    flex: 1,
   },
   sectionContainer: {
     marginTop: 32,

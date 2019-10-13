@@ -1,10 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {ActivityIndicator, StyleSheet, Text, View} from 'react-native';
 import Route from './Route';
+import {homeAddress} from '../__mocks__/jobs';
 
 const BuildRoute = ({navigation}) => {
   const [loading, setLoading] = useState(true);
   const [route, setRoute] = useState([]);
+  const jobsList = navigation.getParam('jobsList', []);
+  const [jobsInRoute, setJobsInRoute] = useState([]);
+
+  const addHomeToJobs = jobs => {
+    return [homeAddress, ...jobs];
+  };
 
   const convertJobObjectFormat = jobs => {
     return jobs.map(job => {
@@ -17,12 +24,11 @@ const BuildRoute = ({navigation}) => {
   };
 
   const fetchRoute = async () => {
-    const locations = convertJobObjectFormat(
-      navigation.getParam('jobsList', []),
-    );
+    const jobsWithHome = addHomeToJobs(jobsList);
+    const formattedJobs = convertJobObjectFormat(jobsWithHome);
 
     const requestBody = {
-      locations: JSON.stringify(locations),
+      locations: JSON.stringify(formattedJobs),
     };
 
     const formBody = [];
@@ -43,17 +49,17 @@ const BuildRoute = ({navigation}) => {
     });
     const responseJson = await response.json();
     setRoute(responseJson);
+    setJobsInRoute(jobsWithHome);
     return responseJson;
   };
 
   useEffect(() => {
     fetchRoute()
       .then(response => {
-        // console.log(response);
         setLoading(false);
       })
       .catch(err => {
-        console.log(err);
+        // TODO handle error
         setLoading(true);
       });
   }, []);
@@ -61,12 +67,12 @@ const BuildRoute = ({navigation}) => {
   if (loading) {
     return (
       <View>
-        <Text>Loading...</Text>
+        <ActivityIndicator size="large" color="rebeccapurple" />
       </View>
     );
   }
 
-  return <Route routeObject={route} />;
+  return <Route routeObject={route} jobsList={jobsInRoute} />;
 };
 
 BuildRoute.navigationOptions = {

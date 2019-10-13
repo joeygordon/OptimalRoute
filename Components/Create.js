@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 
 import JobItem from './JobItem';
@@ -48,10 +48,12 @@ const Create = ({navigation}) => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView>
-        <View style={styles.introView}>
-          <Text style={styles.introText}>Select Stops</Text>
+        <View style={styles.scrollView}>
+          <View style={styles.introView}>
+            <Text style={styles.introText}>Select Stops</Text>
+          </View>
+          {jobsList}
         </View>
-        {jobsList}
       </ScrollView>
       <CreateButton listCount={selectedCount} handlePress={handleCreatePress} />
     </SafeAreaView>
@@ -65,6 +67,10 @@ Create.navigationOptions = {
 const styles = StyleSheet.create({
   safeArea: {
     height: '100%',
+    backgroundColor: '#eeeeee',
+  },
+  scrollView: {
+    paddingBottom: 104,
   },
   introView: {
     margin: 16,
@@ -73,7 +79,7 @@ const styles = StyleSheet.create({
   introText: {
     fontSize: 24,
     fontWeight: '600',
-    color: 'black',
+    color: '#666666',
   },
 });
 

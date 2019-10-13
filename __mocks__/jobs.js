@@ -1,4 +1,7 @@
 export const homeAddress = {
+  id: 200,
+  name: 'My Location',
+  address: '2625 E Burnside St',
   lat: '45.523230',
   long: '-122.638860',
 };

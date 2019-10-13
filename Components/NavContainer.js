@@ -36,4 +36,4 @@ const TabNavigator = createBottomTabNavigator({
   Unscheduled: UnscheduledStack,
 });
 
-export default createAppContainer(TabNavigator);
+export default createAppContainer(CreateStack);
