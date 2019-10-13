@@ -5,4 +5,5 @@ export const colors = {
   cardBackground: '#ffffff',
   text: '#666666',
   lightText: '#999999',
+  headerText: '#ffffff',
 };

@@ -1,9 +1,11 @@
+import {colors} from './colors';
+
 export const stackNavConfig = {
   defaultNavigationOptions: {
     headerStyle: {
-      backgroundColor: 'rebeccapurple',
+      backgroundColor: colors.primary,
     },
-    headerTintColor: '#fff',
+    headerTintColor: colors.headerText,
     headerTitleStyle: {
       fontWeight: 'bold',
     },
