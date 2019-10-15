@@ -53,8 +53,6 @@ const CreateScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      {/*    <View style={styles.container}>*/}
-      {/*{jobsList}*/}
       <FlatList
         data={jobs}
         renderItem={({item}) => (
@@ -68,7 +66,6 @@ const CreateScreen = ({navigation}) => {
         ListHeaderComponent={listHeader}
         ListFooterComponent={<View style={styles.listFooter} />}
       />
-      {/*</View>*/}
       <CreateButton listCount={selectedCount} handlePress={handleCreatePress} />
     </SafeAreaView>
   );
