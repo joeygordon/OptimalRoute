@@ -44,7 +44,7 @@ I chose to use functional components with hooks throughout the app to stay up to
 
 ## If I Had More Time
 #### Address to Lat/Lon Conversion
-There are a couple of small weird quirks when translating addresses to lat/lon coordinates. Some addresses labels change on the map although they are still mapped in the correct spot.
+There are a couple of small weird quirks when translating addresses to lat/lon coordinates. Some address labels change on the map although they are still mapped in the correct spot.
 
 #### Persistence
 I had plans to be able to save routes into a calendar view, but I ran out of time.
