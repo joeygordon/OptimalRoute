@@ -1,5 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  FlatList,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 
 import JobItem from './JobItem';
 import CreateButton from './CreateButton';
@@ -37,39 +43,38 @@ const Create = ({navigation}) => {
     }
   };
 
-  // Each job card
-  const jobsList = jobs.map(job => {
-    // is the card currently selected?
-    const isSelected = !!findJobInArray(job.id, selectedJobs);
-
-    return (
-      <JobItem
-        key={job.id}
-        handleSelection={handleJobSelection}
-        jobInfo={job}
-        selected={isSelected}
-      />
-    );
-  });
-
   // navigate to new route with job data on CreateButton press
   const handleCreatePress = () => {
     navigation.navigate('BuildRoute', {jobsList: selectedJobs});
   };
 
+  const listHeader = () => (
+    <View style={styles.header}>
+      <Text style={styles.heading}>Create A Route</Text>
+      <Text style={styles.subHeading}>
+        Select at least 2 locations to calculate the most efficient route.
+      </Text>
+    </View>
+  );
+
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ScrollView>
-        <View style={styles.container}>
-          <View style={styles.header}>
-            <Text style={styles.heading}>Create A Route</Text>
-            <Text style={styles.subHeading}>
-              Select at least 2 locations to calculate the most efficient route.
-            </Text>
-          </View>
-          {jobsList}
-        </View>
-      </ScrollView>
+      {/*    <View style={styles.container}>*/}
+      {/*{jobsList}*/}
+      <FlatList
+        data={jobs}
+        renderItem={({item}) => (
+          <JobItem
+            handleSelection={handleJobSelection}
+            jobInfo={item}
+            selected={!!findJobInArray(item.id, selectedJobs)}
+          />
+        )}
+        keyExtractor={job => job.id.toString()}
+        ListHeaderComponent={listHeader}
+        ListFooterComponent={<View style={styles.listFooter} />}
+      />
+      {/*</View>*/}
       <CreateButton listCount={selectedCount} handlePress={handleCreatePress} />
     </SafeAreaView>
   );
@@ -82,9 +87,6 @@ Create.navigationOptions = {
 const styles = StyleSheet.create({
   safeArea: {
     backgroundColor: colors.background,
-  },
-  container: {
-    paddingBottom: 104,
   },
   header: {
     margin: 16,
@@ -100,6 +102,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.text,
     marginBottom: 8,
+  },
+  listFooter: {
+    height: 104,
   },
 });
 

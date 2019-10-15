@@ -41,3 +41,4 @@ Find the optimal travel route form your chosen destinations.
 
 #### Hooks vs Class Components
 I chose to use functional components with hooks throughout the app to stay up to date with current React patterns.
+
