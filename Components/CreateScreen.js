@@ -9,7 +9,7 @@ import {jobs} from '../__mocks__/jobs';
 import {findJobInArray} from '../utils/findJobInArray';
 import {colors} from '../consts/colors';
 
-const Create = ({navigation}) => {
+const CreateScreen = ({navigation}) => {
   const [selectedJobs, setSelectedJobs] = useState([]);
   const selectedCount = selectedJobs.length;
 
@@ -74,8 +74,8 @@ const Create = ({navigation}) => {
   );
 };
 
-Create.navigationOptions = {
-  title: 'Create A Route',
+CreateScreen.navigationOptions = {
+  title: 'CreateScreen A Route',
 };
 
 const styles = StyleSheet.create({
@@ -102,4 +102,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Create;
+export default CreateScreen;

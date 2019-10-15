@@ -3,7 +3,7 @@ Find the optimal travel route form your chosen destinations.
 
 ## Instructions
 1. Select at least 2 jobsite addresses
-2. Press Create Route button to calculate your route
+2. Press CreateScreen Route button to calculate your route
 3. Tap on each step of the route to get directions from the previous step
 
 ## Installation

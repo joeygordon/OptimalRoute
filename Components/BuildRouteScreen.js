@@ -15,7 +15,7 @@ import {Button} from 'react-native-elements';
 import {homeAddress} from '../__mocks__/jobs';
 import {colors} from '../consts/colors';
 
-const BuildRoute = ({navigation}) => {
+const BuildRouteScreen = ({navigation}) => {
   const [loading, setLoading] = useState(true);
   const [route, setRoute] = useState([]);
   const [jobsInRoute, setJobsInRoute] = useState([]);
@@ -130,7 +130,7 @@ const BuildRoute = ({navigation}) => {
   );
 };
 
-BuildRoute.navigationOptions = {
+BuildRouteScreen.navigationOptions = {
   headerTitle: 'Your Route',
 };
 
@@ -151,4 +151,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BuildRoute;
+export default BuildRouteScreen;

@@ -1,14 +1,14 @@
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 
-import Create from './Create';
-import BuildRoute from './BuildRoute';
+import CreateScreen from './CreateScreen';
+import BuildRouteScreen from './BuildRouteScreen';
 import {stackNavConfig} from '../consts/config';
 
 const CreateStack = createStackNavigator(
   {
-    Home: Create,
-    BuildRoute: BuildRoute,
+    Home: CreateScreen,
+    BuildRoute: BuildRouteScreen,
   },
   stackNavConfig,
 );
