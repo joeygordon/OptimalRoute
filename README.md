@@ -7,11 +7,20 @@ Find the most optimal travel route form your chosen destinations.
 3. Tap on each step of the route to get directions from the previous step
 
 ## Installation
-`cd` into the app directory, and run the `yarn` command
+#### Using Yarn
+* clone or download this repo to your machine
+* `cd` into the app directory, and run the `yarn` command
+* `cd ios; pod install` to install iOS dependencies
+
+#### Using NPM
+* clone or download this repo to your machine
+* `cd` into the app directory, and run the `npm i` command
+* `cd ios; pod install` to install iOS dependencies
 
 ## Running The App
-* *iOS Simulator* - `yarn ios` to run on iPhone 11 simulator
-* *Android Simulator* - `yarn android`
+* *iOS Simulator* - `yarn ios` or `npm run ios` to run on iPhone 11 simulator
+   (Note: This command forces the iPhone 11 simulator because I had some issues with macOS 10.15 and react native getting along with older simulators.)
+* *Android Simulator* - `yarn android` or `npm run android` to run on Android simulator
 
 ## Technology Decisions
 - Everything was built in React Native.
