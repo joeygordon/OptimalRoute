@@ -4,12 +4,12 @@ import {showLocation} from 'react-native-map-link';
 
 import {findJobInArray} from '../utils/findJobInArray';
 import {colors} from '../consts/colors';
-import {color} from 'react-native-reanimated';
 
 const Route = ({routeObject, jobsList}) => {
   const {route} = routeObject;
 
-  // extract the stops from the poorly structured api response
+  // this API returns data in an unusual format.
+  // this just formats it into an array.
   const routeStops = Object.entries(route).map(stop => {
     return stop[1];
   });

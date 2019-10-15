@@ -42,9 +42,8 @@ const BuildRoute = ({navigation}) => {
     });
   };
 
-  // this is necessary for this specific API.
-  // you wouldn't normally have to do this if the API work properly
-  // with normal JSON requests like virtually every other API on earth.
+  // this formatting is necessary for this specific API.
+  // it doesn't accept a traditional JSON payload
   const encodeBodyForAPI = data => {
     const formBody = Object.keys(data).map(property => {
       const encodedKey = encodeURIComponent(property);
