@@ -72,7 +72,7 @@ const CreateScreen = ({navigation}) => {
 };
 
 CreateScreen.navigationOptions = {
-  title: 'CreateScreen A Route',
+  title: 'Create A Route',
 };
 
 const styles = StyleSheet.create({
