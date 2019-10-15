@@ -24,7 +24,9 @@ Find the optimal travel route form your chosen destinations.
 * XCode 11.0
 * macOS 10.15
 * iPhone 11 Simulator with iOS 13.0
+* Cocoapods 1.7.5
 * Android 9 SDK
+* Gradle 5.5
 
 ## Running The App
 * *iOS Simulator* - `yarn ios` or `npm run ios` to run on iPhone 11 simulator
