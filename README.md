@@ -34,6 +34,7 @@ I chose to use functional components with hooks throughout the app to stay up to
 #### Software Versions
 * Node 10.16.0
 * NPM 6.10.0
+* Yarn 1.17.3
 * XCode 11.0
 * macOS 10.15
 * iPhone 11 Simulator with iOS 13.0
