@@ -125,16 +125,7 @@ const BuildRoute = ({navigation}) => {
   // success view
   return (
     <SafeAreaView style={styles.safeArea}>
-      <ScrollView>
-        <View style={styles.header}>
-          <Text style={styles.heading}>Your Route</Text>
-          <Text style={styles.subHeading}>{jobsList.length} total stops</Text>
-          <Text style={styles.subHeading}>
-            Tap a stop to get directions from the previous stop
-          </Text>
-        </View>
-        <Route routeObject={route} jobsList={jobsInRoute} />
-      </ScrollView>
+      <Route routeObject={route} jobsList={jobsInRoute} />
     </SafeAreaView>
   );
 };
@@ -151,21 +142,6 @@ const styles = StyleSheet.create({
   activity: {
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  header: {
-    margin: 16,
-    marginTop: 32,
-  },
-  heading: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: colors.text,
-    marginBottom: 8,
-  },
-  subHeading: {
-    fontSize: 16,
-    color: colors.text,
-    marginBottom: 8,
   },
   button: {
     backgroundColor: colors.primary,

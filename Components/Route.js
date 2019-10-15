@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {showLocation} from 'react-native-map-link';
 
 import {findJobInArray} from '../utils/findJobInArray';
@@ -26,7 +26,7 @@ const Route = ({routeObject, jobsList}) => {
   };
 
   // build out view for each stop on the route
-  const routeViews = routeStops.map((stop, i) => {
+  const routeView = (stop, i) => {
     // get data for the current stop
     const stopData = findJobInArray(stop.name, jobsList);
 
@@ -39,7 +39,7 @@ const Route = ({routeObject, jobsList}) => {
     const dividerLine = i !== 0 ? <View style={styles.dividerLine} /> : null;
 
     return (
-      <View key={`${stop.name}-${i}`}>
+      <View>
         {dividerLine}
         <TouchableOpacity
           disabled={i === 0}
@@ -55,15 +55,43 @@ const Route = ({routeObject, jobsList}) => {
         </TouchableOpacity>
       </View>
     );
-  });
+  };
 
-  return <>{routeViews}</>;
+  const listHeader = () => (
+    <View style={styles.header}>
+      <Text style={styles.heading}>Your Route</Text>
+      <Text style={styles.subHeading}>{jobsList.length} total stops</Text>
+      <Text style={styles.subHeading}>
+        Tap a stop to get directions from the previous stop
+      </Text>
+    </View>
+  );
+
+  return (
+    <FlatList
+      data={routeStops}
+      renderItem={({index, item}) => routeView(item, index)}
+      keyExtractor={(item, i) => `${item.name}-${i}`}
+      ListHeaderComponent={listHeader}
+    />
+  );
 };
 
 const styles = StyleSheet.create({
-  containerView: {
-    paddingTop: 32,
-    paddingBottom: 64,
+  header: {
+    margin: 16,
+    marginTop: 32,
+  },
+  heading: {
+    fontSize: 24,
+    fontWeight: '600',
+    color: colors.text,
+    marginBottom: 8,
+  },
+  subHeading: {
+    fontSize: 16,
+    color: colors.text,
+    marginBottom: 8,
   },
   cardWrapper: {
     width: '100%',
