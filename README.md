@@ -1,5 +1,5 @@
 # Optimal Route
-Find the most optimal travel route form your chosen destinations.
+Find the optimal travel route form your chosen destinations.
 
 ## Instructions
 1. Select at least 2 jobsite addresses
@@ -31,3 +31,9 @@ Find the most optimal travel route form your chosen destinations.
 #### Hooks vs Class Components
 I chose to use functional components with hooks throughout the app to stay up to date with current React patterns.
 
+#### Software Versions
+* Node 10.16.0
+* NPM 6.10.0
+* XCode 11.0
+* macOS 10.15
+* iPhone 11 Simulator with iOS 13.0
