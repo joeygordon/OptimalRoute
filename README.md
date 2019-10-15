@@ -17,6 +17,15 @@ Find the optimal travel route form your chosen destinations.
 * `cd` into the app directory, and run the `npm i` command
 * `cd ios; pod install` to install iOS dependencies
 
+#### Software Versions
+* Node 10.16.0
+* NPM 6.10.0
+* Yarn 1.17.3
+* XCode 11.0
+* macOS 10.15
+* iPhone 11 Simulator with iOS 13.0
+* Android 9 SDK
+
 ## Running The App
 * *iOS Simulator* - `yarn ios` or `npm run ios` to run on iPhone 11 simulator
    (Note: This command forces the iPhone 11 simulator because I had some issues with macOS 10.15 and react native getting along with older simulators.)
@@ -30,11 +39,3 @@ Find the optimal travel route form your chosen destinations.
 
 #### Hooks vs Class Components
 I chose to use functional components with hooks throughout the app to stay up to date with current React patterns.
-
-#### Software Versions
-* Node 10.16.0
-* NPM 6.10.0
-* Yarn 1.17.3
-* XCode 11.0
-* macOS 10.15
-* iPhone 11 Simulator with iOS 13.0
